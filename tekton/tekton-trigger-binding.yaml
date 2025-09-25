@@ -1,0 +1,11 @@
+apiVersion:
+kind:
+metadata:
+spec:
+  params:
+  - name: repo-url
+    value: $(body.repository.url)
+  - name: branch-name
+    value: $(body.ref)
+  - name: commit-sha
+    value: $(body.after)

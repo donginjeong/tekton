@@ -1,0 +1,13 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: Eventlistener
+metadata:
+  name: github-listener
+  namespace: default
+spec:
+  serviceaccountName: tekton-triggers-sa
+  triggers:
+  - bindings:
+    - ref: github-binding
+    template:
+      ref: github-template
+    interceptors: []
