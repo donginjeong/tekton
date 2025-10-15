@@ -7,13 +7,13 @@ spec:
   - name: image-name
     type: string
     description: The name of the image to build and push
-  - name: image-stg
+  - name: image-tag
     type: string
     description: Thetag for the image (e.g, latest, v1.0).
     default: "latest"
   - name: dockerfile-path
     type : string
-    default: "gs-spring-boot/complete"
+    default: "tekton/gs-spring-boot/complete"
   workspaces:
   - name: source
     description: The workspace containing the source code and Dockerfile
@@ -28,13 +28,13 @@ spec:
         secretKeyRef:
           name: regcred
           key: .dockerconfigjson
-      script: | 
-        #!/bin/sh
-        # writable /kaniko/.docker directory is not guaranteed to be writable
-        mkdir -p /tekton/home/.docker
-        echo "${DOCKER_CONFIG_JSON}" > /tekton/home/.docker/config.json 
-        ls -al /tekton/home/.docker
-        cat /tekton/home/.docker/config.json 
+    script: | 
+      #!/bin/sh
+      # writable /kaniko/.docker directory is not guaranteed to be writable
+      mkdir -p /tekton/home/.docker
+      echo "${DOCKER_CONFIG_JSON}" > /tekton/home/.docker/config.json 
+      ls -al /tekton/home/.docker
+      cat /tekton/home/.docker/config.json 
   - name: build-and-push
     image: gcr.io/kaniko-project/executor:latest 
     env:

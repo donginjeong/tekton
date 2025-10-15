@@ -5,10 +5,10 @@ metadata:
 spec:
   pipelineRef:
     name: pipeline-portal
-  serviceAccountName: takton-sa
+  serviceAccountName: tekton-sa
   params:
   - name: repo-url
-    value: "git@github.com/donginjeong/tekton.git"
+    value: "git@github.com:donginjeong/tekton.git"
   - name: branch-name
     value: "main"
   - name: maven-goal
